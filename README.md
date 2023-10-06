@@ -24,7 +24,7 @@ ChatGPT Clone utilizes the following technologies:
 
 To get started with ChatGPT Clone, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/ChatGPT-Clone.git`
+1. Clone the repository
 2. Install the dependencies: `npm install`
 3. Set up your environment variables by creating a `.env` file and adding the necessary values.
 4. Run the development server: `npm run dev`
