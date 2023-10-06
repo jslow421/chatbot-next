@@ -30,10 +30,6 @@ To get started with ChatGPT Clone, follow these steps:
 4. Run the development server: `npm run dev`
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-## Contributing
-
-Contributions are welcome! If you find ChatGPT Clone useful, consider starring the repository on GitHub.
-
 ## License
 
 This project is open source and available under the [MIT License](https://opensource.org/licenses/MIT).
