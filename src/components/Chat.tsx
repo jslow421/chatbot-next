@@ -1,12 +1,14 @@
 "use client";
+import { Configuration } from "@/../.configuration";
+import useAutoResizeTextArea from "@/hooks/useAutoResizeTextArea";
+import cookies from "cookie";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { BsChevronDown, BsPlusLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
-// import useAnalytics from "@/hooks/useAnalytics";
-import useAutoResizeTextArea from "@/hooks/useAutoResizeTextArea";
-import Image from "next/image";
 import Message from "./Message";
+// import useAnalytics from "@/hooks/useAnalytics";
 
 export default function Chat(props: any) {
 	const { toggleComponentVisibility } = props;
@@ -20,7 +22,6 @@ export default function Chat(props: any) {
 	const textAreaRef = useAutoResizeTextArea();
 	const bottomOfChatRef = useRef<HTMLDivElement>(null);
 
-	class Answer {}
 	useEffect(() => {
 		if (textAreaRef.current) {
 			textAreaRef.current.style.height = "24px";
@@ -36,11 +37,11 @@ export default function Chat(props: any) {
 
 	const fetchStreamedText = async () => {
 		try {
-			const response = await fetch("https://9khv50aaw9.execute-api.us-east-1.amazonaws.com/prod/", {
+			const response = await fetch(Configuration.PROD_API_URL, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					Origin: "http://localhost",
+					Authorization: `Bearer ${cookies.parse(document.cookie).authorization}`,
 				},
 				body: JSON.stringify({
 					messages: [...conversation, { content: message, role: "user" }],
@@ -54,6 +55,7 @@ export default function Chat(props: any) {
 						...conversation,
 						{ content: message, role: "user" },
 						{ content: data.answer, role: "system" },
+						{ sources: data.sources },
 					]);
 				});
 

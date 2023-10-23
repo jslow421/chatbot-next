@@ -5,7 +5,7 @@ import { TbCursorText } from "react-icons/tb";
 
 export default function Message(props: any) {
 	const { message } = props;
-	const { role, content: text } = message;
+	const { role, content: text, sources: sources } = message;
 
 	const isUser = role === "user";
 
@@ -38,7 +38,15 @@ export default function Message(props: any) {
 									{!isUser && text === null ? (
 										<TbCursorText className="h-6 w-6 animate-pulse" />
 									) : (
-										<p>{text}</p>
+										<p>
+											{text}
+											{!isUser && sources?.length == 0 ? null : (
+												<div>
+													<p>Sources:</p>
+													<p>{sources}</p>
+												</div>
+											)}
+										</p>
 									)}
 								</div>
 							</div>
