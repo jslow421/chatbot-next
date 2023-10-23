@@ -1,11 +1,11 @@
 "use client";
+import { AiOutlineCloud } from "react-icons/ai";
 import { HiUser } from "react-icons/hi";
-import { SiOpenai } from "react-icons/si";
 import { TbCursorText } from "react-icons/tb";
 
 export default function Message(props: any) {
 	const { message } = props;
-	const { role, content: text, sources: sources } = message;
+	const { role, content: text, sources } = message;
 
 	const isUser = role === "user";
 
@@ -22,7 +22,7 @@ export default function Message(props: any) {
 							{isUser ? (
 								<HiUser className="h-4 w-4 text-white" />
 							) : (
-								<SiOpenai className="h-4 w-4 text-white" />
+								<AiOutlineCloud className="h-4 w-4 text-white" />
 							)}
 						</div>
 						<div className="text-xs flex items-center justify-center gap-1 absolute left-0 top-2 -ml-4 -translate-x-full group-hover:visible !invisible">
@@ -38,16 +38,22 @@ export default function Message(props: any) {
 									{!isUser && text === null ? (
 										<TbCursorText className="h-6 w-6 animate-pulse" />
 									) : (
+										<p>{text}</p>
+									)}
+									{!isUser && sources?.length > 0 ? (
 										<p>
-											{text}
-											{!isUser && sources?.length == 0 ? null : (
+											{
 												<div>
 													<p>Sources:</p>
-													<p>{sources}</p>
+													<ul>
+														{sources.map((source: any, index: any) => (
+															<li key={index}>{source}</li>
+														))}
+													</ul>
 												</div>
-											)}
+											}
 										</p>
-									)}
+									) : null}
 								</div>
 							</div>
 						</div>

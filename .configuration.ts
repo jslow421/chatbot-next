@@ -7,4 +7,5 @@ export class Configuration {
 	static readonly TOKEN_URL = "https://slowiktest.auth.us-east-1.amazoncognito.com/oauth2/token";
 	static readonly REDIRECT_URI = "https://ds060nnoq0vli.cloudfront.net/";
 	static readonly PROD_API_URL = `${this.BASE_URL}/prod`;
+	static readonly IS_CHAT_HISTORY_ENABLED = false;
 }
