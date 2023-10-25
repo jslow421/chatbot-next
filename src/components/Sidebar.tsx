@@ -1,8 +1,7 @@
 import { Configuration } from "@/../.configuration";
-import cookies, { parse, serialize } from "cookie";
+import { serialize } from "cookie";
 import React from "react";
-import { AiOutlineMessage, AiOutlinePlus, AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
-import { BiLinkExternal } from "react-icons/bi";
+import { AiOutlineMessage, AiOutlinePlus } from "react-icons/ai";
 import { FiMessageSquare } from "react-icons/fi";
 import { MdLogout } from "react-icons/md";
 
