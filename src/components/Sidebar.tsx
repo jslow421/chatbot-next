@@ -1,4 +1,5 @@
 import { Configuration } from "@/../.configuration";
+import cookies, { parse, serialize } from "cookie";
 import React from "react";
 import { AiOutlineMessage, AiOutlinePlus, AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
 import { BiLinkExternal } from "react-icons/bi";
@@ -6,6 +7,11 @@ import { FiMessageSquare } from "react-icons/fi";
 import { MdLogout } from "react-icons/md";
 
 export default function Sidebar() {
+	const logout = () => {
+		document.cookie = serialize("authorization", "", { expires: new Date(0) });
+		window.location.reload();
+	};
+
 	return (
 		<div className="scrollbar-trigger flex h-full w-full flex-1 items-start border-white/20">
 			<nav className="flex h-full flex-1 flex-col space-y-1 p-2">
@@ -47,7 +53,10 @@ export default function Sidebar() {
 					<BiLinkExternal className="h-4 w-4" />
 					Get help
 				</a> */}
-				<a className="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm">
+				<a
+					className="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"
+					onClick={logout}
+				>
 					<MdLogout className="h-4 w-4" />
 					Log out
 				</a>
