@@ -12,7 +12,6 @@ export default function Sidebar() {
 	};
 
 	const clearChat = () => {
-		console.log("clear chat");
 		window.location.reload();
 	};
 
