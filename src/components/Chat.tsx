@@ -36,6 +36,9 @@ export default function Chat(props: any) {
 	}, [conversation]);
 
 	const fetchStreamedText = async () => {
+		const messagesToPost = [...conversation, { content: message, role: "user" }];
+		// Note: This is a hack to account for langchain being VERY strict about the pairing of messages
+		messagesToPost.pop();
 		try {
 			const response = await fetch(Configuration.PROD_API_URL, {
 				method: "POST",
@@ -44,13 +47,12 @@ export default function Chat(props: any) {
 					Authorization: `Bearer ${cookies.parse(document.cookie).authorization}`,
 				},
 				body: JSON.stringify({
-					messages: [...conversation, { content: message, role: "user" }],
+					messages: messagesToPost,
 					question: message,
 				}),
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data);
 					setConversation([
 						...conversation,
 						{ content: message, role: "user" },
