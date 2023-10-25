@@ -4,11 +4,10 @@ import useAutoResizeTextArea from "@/hooks/useAutoResizeTextArea";
 import cookies from "cookie";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { BsChevronDown, BsPlusLg } from "react-icons/bs";
+import { BsPlusLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Message from "./Message";
-// import useAnalytics from "@/hooks/useAnalytics";
 
 export default function Chat(props: any) {
 	const { toggleComponentVisibility } = props;
@@ -18,7 +17,6 @@ export default function Chat(props: any) {
 	const [showEmptyChat, setShowEmptyChat] = useState(true);
 	const [conversation, setConversation] = useState<any[]>([]);
 	const [message, setMessage] = useState("");
-	// const { trackEvent } = useAnalytics();
 	const textAreaRef = useAutoResizeTextArea();
 	const bottomOfChatRef = useRef<HTMLDivElement>(null);
 
@@ -78,7 +76,6 @@ export default function Chat(props: any) {
 			setErrorMessage("");
 		}
 
-		// trackEvent("send.message", { message: message });
 		setIsLoading(true);
 
 		// Add the message to the conversation
@@ -91,7 +88,7 @@ export default function Chat(props: any) {
 	};
 
 	const handleKeypress = (e: any) => {
-		// It's triggers by pressing the enter key
+		// Triggers by pressing the enter key
 		if (e.keyCode == 13 && !e.shiftKey) {
 			sendMessage(e);
 			e.preventDefault();
